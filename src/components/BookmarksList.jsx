@@ -1,19 +1,20 @@
-import React, {useEffect, useState} from "react";
-import {fetchAllBookmarks} from "../services/api/bookmarks.js";
-import BookmarkItem from "./BookmarkItem.jsx";
+import React, { useEffect, useState } from 'react';
+import { fetchAllBookmarks } from '../services/api/bookmarks';
+import BookmarkItem from './BookmarkItem';
 
-function Bookmarks(){
-    const [bookmarksList, setBookmarksList] = useState([])
+function Bookmarks() {
+    const [bookmarksList, setBookmarksList] = useState([]);
+    const [pagination, setPagination] = useState([])
 
     useEffect(() => {
         fetchAllBookmarks()
             .then((response) => {
-                setBookmarksList(response["hydra:member"])
+                setBookmarksList(response['hydra:member']);
             });
-    }, [bookmarksList])
+    }, [bookmarksList]);
 
     const listBookmarks = bookmarksList.map((v, i) => (
-        <BookmarkItem key={i} data={v}></BookmarkItem>
+        <BookmarkItem key={v.id} data={v} />
     ));
     console.log(bookmarksList);
     return <div>{listBookmarks}</div>;

@@ -1,19 +1,20 @@
-import React, {useEffect, useState} from "react";
-import {fetchAllBookmarks} from "../services/api/bookmarks.js";
+import React, { useEffect, useState } from 'react';
+import { avatarUrl } from '../services/api/bookmarks';
 
-function BookmarkItem() {
-    const [avatarURL, setAvatarURL] = useState('')
+function BookmarkItem({ data }) {
+    const [avatarURL, setAvatarURL] = useState();
 
     useEffect(() => {
-        setAvatarURL(avatarURL(data.owner.id))
-    }, [data])
-
+        setAvatarURL(avatarUrl(data.owner.id));
+    }, [data]);
 
     return (
-        <div>
-            <img className="fit_picture" src={avatarURL}/>
-            {data.name}
-        </div>
+        <a href={data.url}>
+            <div className={'b'}>
+                {data.name}
+                <img className="fit-picture" src={avatarURL} />
+            </div>
+        </a>
     );
 }
 export default BookmarkItem;

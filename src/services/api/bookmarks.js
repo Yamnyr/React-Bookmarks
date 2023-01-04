@@ -8,7 +8,7 @@ export async function fetchAllBookmarks() {
        .then((response) => response.json())
 }
 
-export async function avaterURL(userid) {
+export function avatarUrl(userid) {
    return `${API_URL}/users/${userid}/avatar`;
 }
 export default {

@@ -39,3 +39,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.b{
+  color: #747bff;
+  background: #213547;
+  font-size: 20px;
+  margin: 20px;
+  height: 60px;
+  border-radius: 10px;
+}
+img{
+  float: right;
+  margin: 5px;
+  border-radius: 10px;
+}
