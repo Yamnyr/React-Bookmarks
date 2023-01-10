@@ -1,30 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+export default function paginationFromHydraView(view) {
+  const current = view['@id'].slice(-1);
+  const first = view['hydra:first'].slice(-1);
+  const last = view['hydra:last'].slice(-1);
+  const next = view['hydra:next'] !== undefined ? view['hydra:next'].slice(-1) : undefined;
+  let previous = undefined;
 
-function PaginationFromHydraView() {
+  if (view['hydra:previous'] !== undefined) {
+    previous = view['hydra:previous'].slice(-1);
+  }
 
   return {
-    current: '@id'.split('page='),
-    first: 'hydra:first'.split('page='),
-    previous: 'hydra: previous'.split('page='),
-    next: 'hydra: next'.split('page='),
-    last: 'hydra: last'.split('page='),
+    current,
+    first,
+    last,
+    previous,
+    next,
   };
 }
-
-PaginationFromHydraView.prototype = {
-  current: PropTypes.number,
-  first: PropTypes.number,
-  previous: PropTypes.number,
-  next: PropTypes.number,
-  last: PropTypes.number,
-
-};
-
-PaginationFromHydraView.defaultProps = {
-  current: null,
-  first: null,
-  previous: null,
-  next: null,
-  last: null,
-};
