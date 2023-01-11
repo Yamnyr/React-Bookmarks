@@ -9,14 +9,13 @@ function Bookmarks() {
     const [pagination, setPagination] = useState({});
 
     function pageUpadte(page) {
-        fetchAllBookmarks()
+        fetchAllBookmarks(page)
             .then((response) => {
                 setBookmarksList(response['hydra:member']);
                 setPagination(paginationFromHydraView(response['hydra:view']));
             });
     }
 
-    /*TODO Vous ajouterez une instance du composant Pagination dans le composant BookmarksList.*/
     useEffect(() => {
         pageUpadte(1)
     }, []);
@@ -27,7 +26,7 @@ function Bookmarks() {
     console.log(pagination, bookmarksList);
     return <>
         <div>{listBookmarks}</div>
-        <Pagination {...pagination} onPageChange={(page) => {console.log(page)}} />/* pageUpdate(page)*/
+        <Pagination {...pagination} onPageChange={(page) => {pageUpadte(page)}} />
         </>
         ;
 }

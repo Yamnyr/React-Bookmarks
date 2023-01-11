@@ -5,17 +5,16 @@ import paginationFromHydraView from "../services/transformers/paginationFromHydr
 
 function Pagination(props){
 const { current, first, previous, next, last, onPageChange} = props
-        /*TODO Affiche la page courante */
 return (
     <>
-        <button onClick={() => onPageChange(first)}>first</button>
-        <button onClick={() => fetchAllBookmarks({previous})}>previous</button>
-        <button onClick={() => fetchAllBookmarks({next})}>next</button>
-        <button onClick={() => fetchAllBookmarks({last})}>last</button>
+
+        <button onClick={() => onPageChange(first)} disabled={current === first}>first</button>
+        <button onClick={() => onPageChange(previous)} disabled={current === first}>previous</button>
+        <button onClick={() => onPageChange(next)} disabled={current === last}>next</button>
+        <button onClick={() => onPageChange(last)} disabled={current === last}>last</button>
 
     </>
 );
-        /*TODO Les boutons devront être désactivés lorsque les propriétés ne sont pas présentes.*/
 
 }
 export default Pagination;

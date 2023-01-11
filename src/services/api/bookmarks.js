@@ -4,7 +4,8 @@ const BASE_URL = "http://bookmarks-api";
 const API_URL = `${BASE_URL}/api`;
 
 export async function fetchAllBookmarks(page) {
-   return fetch(`${API_URL}/bookmarks`)/* TODO parametre oage ...arks?page=2' \ */
+   console.log('page index = '+page)
+   return fetch(`${API_URL}/bookmarks?page=`+page)
        .then((response) => response.json())
 }
 
